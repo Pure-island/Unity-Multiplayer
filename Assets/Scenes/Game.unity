@@ -975,6 +975,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1097905938}
+  - component: {fileID: 1097905940}
   - component: {fileID: 1097905939}
   m_Layer: 0
   m_Name: GameHUD
@@ -1011,6 +1012,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b627751a023806748ac0232e5b4f8312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leaderboardEntityHolder: {fileID: 1200233999}
+  leaderboardEntityPrefab: {fileID: 2573300254680407971, guid: b410d26a4c533494f95690c40b14df7a, type: 3}
+--- !u!114 &1097905940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097905937}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2515381057
+  AlwaysReplicateAsRoot: 0
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &1155190363
 GameObject:
   m_ObjectHideFlags: 0
