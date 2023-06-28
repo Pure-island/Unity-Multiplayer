@@ -2014,6 +2014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6888f5f65fc27544c8637418826584bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenu: {fileID: 291146710}
   lobbyItemParent: {fileID: 287268247}
   lobbyItemPrefab: {fileID: 8302415588543655319, guid: 568e7424abbd3be4b834b7ec847398f7, type: 3}
 --- !u!1 &1097761621
