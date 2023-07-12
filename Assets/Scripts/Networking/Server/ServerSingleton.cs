@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class ServerSingleton : MonoBehaviour
 {
-    [SerializeField] private Color[] teamColours;
-
     private static ServerSingleton instance;
 
     public ServerGameManager GameManager { get; private set; }

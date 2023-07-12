@@ -23,8 +23,6 @@ public class ServerGameManager : IDisposable
     private MatchplayBackfiller backfiller;
     private MultiplayAllocationService multiplayAllocationService;
 
-    private Dictionary<string, int> teamIdToTeamIndex = new Dictionary<string, int>();
-
     public NetworkServer NetworkServer { get; private set; }
 
     public ServerGameManager(string serverIP, int serverPort,
@@ -96,16 +94,8 @@ public class ServerGameManager : IDisposable
 
     private void UserJoined(UserData user)
     {
-        UserData userData = NetworkServer.GetUserDataByAuthId(user.userAuthId);
         Team team = backfiller.GetTeamByUserId(user.userAuthId);
-        if (!teamIdToTeamIndex.TryGetValue(team.TeamId, out int teamIndex))
-        {
-            teamIndex = teamIdToTeamIndex.Count;
-            teamIdToTeamIndex.Add(team.TeamId, teamIndex);
-        }
-
-        userData.teamIndex = teamIndex;
-
+        Debug.Log($"{user.userAuthId} {team.TeamId}");
         multiplayAllocationService.AddPlayer();
         if (!backfiller.NeedsPlayers() && backfiller.IsBackfilling)
         {
