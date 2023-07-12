@@ -78,16 +78,21 @@ public class NetworkServer : IDisposable
         }
     }
 
+    public UserData GetUserDataByAuthId(string authId)
+    {
+        if (authIdToUserData.TryGetValue(authId, out UserData data))
+        {
+            return data;
+        }
+
+        return null;
+    }
+
     public UserData GetUserDataByClientId(ulong clientId)
     {
         if (clientIdToAuth.TryGetValue(clientId, out string authId))
         {
-            if (authIdToUserData.TryGetValue(authId, out UserData data))
-            {
-                return data;
-            }
-
-            return null;
+            return GetUserDataByAuthId(authId);
         }
 
         return null;
