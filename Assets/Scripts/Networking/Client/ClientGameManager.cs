@@ -19,8 +19,7 @@ public class ClientGameManager : IDisposable
 
     private NetworkClient networkClient;
     private MatchplayMatchmaker matchmaker;
-
-    public UserData UserData;
+    private UserData userData;
 
     private const string MenuSceneName = "Menu";
 
@@ -35,7 +34,7 @@ public class ClientGameManager : IDisposable
 
         if (authState == AuthState.Authenticated)
         {
-            UserData = new UserData
+            userData = new UserData
             {
                 userName = PlayerPrefs.GetString(NameSelector.PlayerNameKey, "Missing Name"),
                 userAuthId = AuthenticationService.Instance.PlayerId
@@ -80,7 +79,7 @@ public class ClientGameManager : IDisposable
 
     private void ConnectClient()
     {
-        string payload = JsonUtility.ToJson(UserData);
+        string payload = JsonUtility.ToJson(userData);
         byte[] payloadBytes = Encoding.UTF8.GetBytes(payload);
 
         NetworkManager.Singleton.NetworkConfig.ConnectionData = payloadBytes;
@@ -95,14 +94,14 @@ public class ClientGameManager : IDisposable
             return;
         }
 
-        UserData.userGamePreferences.gameQueue = isTeamQueue ? GameQueue.Team : GameQueue.Solo;
+        userData.userGamePreferences.gameQueue = isTeamQueue ? GameQueue.Team : GameQueue.Solo;
         MatchmakerPollingResult matchResult = await GetMatchAsync();
         onMatchmakeResponse?.Invoke(matchResult);
     }
 
     private async Task<MatchmakerPollingResult> GetMatchAsync()
     {
-        MatchmakingResult matchmakingResult = await matchmaker.Matchmake(UserData);
+        MatchmakingResult matchmakingResult = await matchmaker.Matchmake(userData);
 
         if (matchmakingResult.result == MatchmakerPollingResult.Success)
         {
